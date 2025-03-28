@@ -53,7 +53,7 @@ var highlightDB = []editorSyntax{
 }
 
 const (
-	highlightNormal = iota
+	highlightNormal editorHighlight = iota
 	highlightComment
 	highlightMultiComment
 	highlightKeyword1
@@ -113,7 +113,7 @@ outer:
 	for i < len(row.render) {
 		ch := rune(row.render[i]) // TODO: multi-byte character support
 
-		var prevHl editorHighlight = highlightNormal
+		prevHl := highlightNormal
 		if i > 0 {
 			prevHl = row.highlight[i-1]
 		}
@@ -206,7 +206,7 @@ outer:
 					}
 
 					if matchedKeyword {
-						var highlight editorHighlight = highlightKeyword1
+						highlight := highlightKeyword1
 						if isSecondary {
 							highlight = highlightKeyword2
 						}
